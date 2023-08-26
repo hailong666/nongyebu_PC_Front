@@ -129,7 +129,7 @@
         },
         manyTableData: [],
         onlyTableData: [],
-        uploadUrl: "http://127.0.0.1:8888/api/private/v1/upload",
+        uploadUrl: "http://49.233.249.9:6000/api/private/v1/upload",
         // uploadUrl: "https://www.liulongbin.top:8888/api/private/v1",
         imgUploadHeaders: { // 上传图片控件的header
           Authorization: sessionStorage.getItem('token')
