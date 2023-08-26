@@ -25,7 +25,8 @@
         <el-button type="primary" @click="changeGoods()">确 定</el-button> -->
         <template slot-scope="scope">
           <el-button type="primary" @click="ifokfunction(scope.row.id)">审批</el-button>
-          <el-button>取 消</el-button>
+          <!-- <el-button>取 消</el-button> -->
+          <el-button type="danger" icon="el-icon-delete" size="mini" @click="removeGoods(scope.row.goods_id)">删除</el-button>
         </template>
 
       </el-table-column>
@@ -83,6 +84,23 @@
           
         })        
       },
+
+
+      removeGoods(id) {
+        console.log(id)
+        this.$confirm('此操作将永久删除, 是否继续?', '提示', {
+          confirmButtonText: '确定',
+          cancelButtonText: '取消',
+          type: 'warning'
+        }).then(() => {
+         
+        }).catch(() => {
+          this.alertMessage('已取消删除', 'info');
+        });
+      },
+
+
+
       updateOrderList() {
         this.$emit('order-list');
       }
