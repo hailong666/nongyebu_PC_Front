@@ -27,7 +27,9 @@
 
           <el-button type="primary" @click="ifokfunction(scope.row.id)">审 批</el-button>
           <!-- <el-button>取 消</el-button> -->
+          <el-button type="danger" icon="el-icon-delete" @click="removeGoods(scope.row.goods_id)">删除</el-button>
           <el-button @click="dialogFormVisible = true; id = scope.row.goods_id; getItems(scope.row)" >详 情</el-button>
+          
         </template>
 
       </el-table-column>
@@ -120,7 +122,7 @@
       },
       getOrderList() {
         axios({
-          url:"http://49.233.249.9:8000/v1/weixinpay/orderFind"
+          url:"https://libin.easygoing.com.cn:8000/v1/weixinpay/orderFind"
         }).then(res=>{
           console.log(res.data.data)
           this.orderList = res.data.data
@@ -134,7 +136,7 @@
         console.log(id)
 
         axios({
-          url:"http://49.233.249.9:8000/v1/weixinpay/okOrder/" + id
+          url:"https://libin.easygoing.com.cn:8000/v1/weixinpay/okOrder/" + id
         }).then(res=>{
 
           return this.alertMessage('审批成功', 'success');

@@ -155,8 +155,8 @@
       changeGoods() {
         this.dialogFormVisible = false
         console.log(this.id)
-        console.log("http://49.233.249.9:8000/v1/weixinpay/updategood/" + this.id)
-          axios.get("http://49.233.249.9:8000/v1/weixinpay/updategood/" + this.id,{
+        console.log("https://libin.easygoing.com.cn:8000/v1/weixinpay/updategood/" + this.id)
+          axios.get("https://libin.easygoing.com.cn:8000/v1/weixinpay/updategood/" + this.id,{
           params:{
             name : this.form.name,
             number: this.form.number,

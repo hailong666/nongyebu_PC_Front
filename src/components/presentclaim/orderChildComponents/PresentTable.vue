@@ -116,7 +116,7 @@
       },
       getOrderList() {
         axios({
-          url:"http://49.233.249.9:8000/v1/weixinpay/orderFind"
+          url:"https://libin.easygoing.com.cn:8000/v1/weixinpay/orderFind"
         }).then(res=>{
           console.log(res.data.data)
           this.orderList = res.data.data

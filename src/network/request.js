@@ -6,7 +6,7 @@ import 'nprogress/nprogress.css';
 export function request(config) {
   let instance = axios.create({
     // baseURL: 'https://lianghj.top:8888/api/private/v1/',
-    baseURL: 'http://49.233.249.9:6000/api/private/v1',
+    baseURL: 'http://libin.easygoing.com.cn:8888/api/private/v1',
     timeout: 5000
   });
 
@@ -31,7 +31,7 @@ export function request(config) {
 export function requestorder(config) {
   let instance = axios.create({
     // baseURL: 'https://lianghj.top:8888/api/private/v1/',
-    baseURL: 'http://49.233.249.9:8000/v1/weixinpay/orderFind',
+    baseURL: 'https://libin.easygoing.com.cn:8000/v1/weixinpay/orderFind',
     timeout: 5000
   });
 
