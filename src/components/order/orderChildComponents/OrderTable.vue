@@ -27,7 +27,7 @@
 
           <el-button type="primary" @click="ifokfunction(scope.row.id)">审 批</el-button>
           <!-- <el-button>取 消</el-button> -->
-          <el-button type="danger" icon="el-icon-delete" @click="removeGoods(scope.row.goods_id)">删除</el-button>
+          <el-button type="danger" icon="el-icon-delete" @click="removeGoods(scope.row.id)">删除</el-button>
           <el-button @click="dialogFormVisible = true; id = scope.row.goods_id; getItems(scope.row)" >详 情</el-button>
           
         </template>
@@ -134,16 +134,25 @@
       },      
       ifokfunction(id){
         console.log(id)
+        this.$confirm('即将审批通过, 是否继续?', '提示', {
+          confirmButtonText: '同意',
+          cancelButtonText: '取消',
+          type: 'warning'
+        }).then(() => {
+            axios({
+            url:"https://libin.easygoing.com.cn:8000/v1/weixinpay/okOrder/" + id
+          }).then(res=>{
 
-        axios({
-          url:"https://libin.easygoing.com.cn:8000/v1/weixinpay/okOrder/" + id
-        }).then(res=>{
+            return this.alertMessage('审批成功', 'success');
 
-          return this.alertMessage('审批成功', 'success');
-
-        }).catch(err=>{
-          
-        })        
+          }).catch(err=>{
+            
+          })          
+         
+        }).catch(() => {
+          this.alertMessage('已取消删除', 'info');
+        });
+       
       },
 
 
@@ -154,6 +163,15 @@
           cancelButtonText: '取消',
           type: 'warning'
         }).then(() => {
+          axios({
+            url:"https://libin.easygoing.com.cn:8000/v1/weixinpay/deleteShenling/" + id
+          }).then(res=>{
+
+            return this.alertMessage('审批成功', 'success');
+
+          }).catch(err=>{
+            
+          })                 
          
         }).catch(() => {
           this.alertMessage('已取消删除', 'info');

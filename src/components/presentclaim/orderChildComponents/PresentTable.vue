@@ -18,7 +18,7 @@
       </el-table-column>
       <el-table-column label="操作">
         <template slot-scope="scope">
-          <el-button type="primary">下 载</el-button>
+          <el-button type="primary" @click="getexcel(scope.row)">下 载</el-button>
           <el-button @click="dialogFormVisible = true; id = scope.row.goods_id; getItems(scope.row)" >详 情</el-button>
         </template>
       </el-table-column>
@@ -57,6 +57,7 @@
   import OrderEdit from "./PresentEdit";
   import OrderProgress from "./PresentProgress";
   import axios from 'axios'
+  import { saveAs } from 'file-saver'
   export default {
     name: "OrderTable",
     components: {
@@ -116,7 +117,7 @@
       },
       getOrderList() {
         axios({
-          url:"https://libin.easygoing.com.cn:8000/v1/weixinpay/orderFind"
+          url:"https://libin.easygoing.com.cn:8000/v1/weixinpay/orderShenling"
         }).then(res=>{
           console.log(res.data.data)
           this.orderList = res.data.data
@@ -125,6 +126,20 @@
           //  return this.alertMessage('获取订单列表失败', 'error');
         })      
 
+      },
+      getexcel(row){
+        
+        axios({
+          url:"http://libin.easygoing.com.cn:6000/post/getform",
+          method:"POST",
+          data:row,
+          responseType:'arraybuffer'
+        }).then(res=>{
+          const blob = new Blob([res.data], {type: 'application/xlsx'})
+          saveAs(blob,"presentclaim.xlsx")
+        }).catch(err=>{
+          //  return this.alertMessage('获取订单列表失败', 'error');
+        })       
       },
       tableRowClassName({row, rowIndex}) {
         if (rowIndex === 1) {
